@@ -1,6 +1,11 @@
 ﻿#include <iostream>
 #include <bitset>
 #include <fstream>
+#include <string>
+#include <set>
+#include <random>
+#include <ctime>
+#include <vector>
 
 using namespace std;
 
@@ -88,7 +93,7 @@ int main()
     */
 
 
-    
+    /*
     unsigned char baits[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     int number, n;
     cout << "Enter the number of values" << endl;
@@ -105,19 +110,55 @@ int main()
                 cout << i * 8 + j << " ";
         }
     }
-    
+    */
     
 
 
 
     //Задание 3
-    /*
+    
     ifstream f1;
-    unsigned char baits[2 ^ 20];
+    ofstream f2;
+    int number;
+    unsigned long long baits[10000000/64];
+    
+    for (int i = 0; i < (10000000 / 64); i++)
+        baits[i] = 0;
+    
     f1.open("Fuf.txt");
-    if (f1.is_open()) {
-
+    f2.open("Shish.txt");
+    if (!f1.is_open()) {
+        return 1;
     }
+    while (f1 >> number) {
+        baits[number / 64] = baits[number / 64] | (0b1000000000000000000000000000000000000000000000000000000000000000 >> (number % 64));
+    }
+    for (int i = 0; i < (10000000 / 64); i++) {
+        for (int j = 0; j < 64; j++) {
+            if (baits[i] & (0b1000000000000000000000000000000000000000000000000000000000000000 >> j))
+                f2 << i * 64 + j << endl;
+        }
+    }
+    f1.close();
+    f2.close();
+    
+    
+    /*
+    ofstream f1;
+    f1.open("Fuf.txt");
+    vector<int> st;
+    int n = 0;
+    for (int i = 0; i < 10000000; i++)
+        f1 << i << endl;
+  //      st.push_back(i);
+    while (st.size() != 0) {
+        n = abs(rand()) % st.size();
+        f1 << st[n] << endl;
+        st.erase(st.begin() + n);
+    }
+    
+    f1.close();
     */
+
     return 0;
 }
