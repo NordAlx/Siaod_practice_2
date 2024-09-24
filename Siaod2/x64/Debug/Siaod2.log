@@ -1,0 +1,4 @@
+﻿  Siaod2.cpp
+C:\Users\Polie\source\project\Siaod_practice_2\Siaod2\Siaod2.cpp(73,23): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Polie\source\project\Siaod_practice_2\Siaod2\Siaod2.cpp(44): warning C4715: get_part: значение возвращается не при всех путях выполнения
+  Siaod2.vcxproj -> C:\Users\Polie\source\project\Siaod_practice_2\Siaod2\x64\Debug\Siaod2.exe

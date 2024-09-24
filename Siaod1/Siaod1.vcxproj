@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ad24c740-eed3-4664-a57d-cd5c8a9a440e}</ProjectGuid>
+    <ProjectGuid>{43785598-402b-4021-85a2-b9c810cb87e3}</ProjectGuid>
     <RootNamespace>Siaod1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

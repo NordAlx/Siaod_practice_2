@@ -1,17 +1,19 @@
-﻿#include <iostream>
-#include <bitset>
-#include <fstream>
-#include <string>
-#include <set>
-#include <random>
-#include <ctime>
-#include <vector>
+﻿#include <iostream> 
+#include <bitset> 
+#include <fstream> 
+#include <string> 
+#include <set> 
+#include <random> 
+#include <ctime> 
+#include <vector> 
+#include <chrono>
+
 
 using namespace std;
 
 int main()
 {
-    ///Номер 1, задание 1
+    ///Номер 1, задание 1 
     /*
     int n = 0x4256;
     cout << "Variable in 2-digit number system" << endl;
@@ -23,7 +25,7 @@ int main()
     cout << bitset<16>(n | mask);
     */
 
-    //Номер 2, задание 1
+    //Номер 2, задание 1 
     /*
     int n;
     cout << "Enter variable value" << endl;
@@ -37,7 +39,7 @@ int main()
     cout << bitset<16>(n & mask);
     */
 
-    //Номер 3, задание 1
+    //Номер 3, задание 1 
     /*
     int n;
     cout << "Enter variable value" << endl;
@@ -47,7 +49,7 @@ int main()
     cout << " (" << n * 16 << ")";
     */
 
-    //Номер 4, задание 1
+    //Номер 4, задание 1 
     /*
     int n;
     cout << "Enter variable value" << endl;
@@ -57,7 +59,7 @@ int main()
     cout << " (" << n / 32 << ")";
     */
 
-    //Номер 5, задание 1
+    //Номер 5, задание 1 
     /*
     int x, n;
     cout << "Enter variable value" << endl;
@@ -74,7 +76,7 @@ int main()
 
 
 
-    //Задание 2
+    //Задание 2 
     /*
     unsigned char baits = 0;
     int number, n;
@@ -111,54 +113,45 @@ int main()
         }
     }
     */
+
+
+
+
+    //Задание 3 
     
+    unsigned int start_time = clock();
 
-
-
-    //Задание 3
-    
     ifstream f1;
     ofstream f2;
+    const int MAX_NUM = 10000000;
     int number;
-    unsigned long long baits[10000000/64];
-    
-    for (int i = 0; i < (10000000 / 64); i++)
-        baits[i] = 0;
-    
+    vector <unsigned char> baits(MAX_NUM / 8);
+
     f1.open("Fuf.txt");
     f2.open("Shish.txt");
-    if (!f1.is_open()) {
+    if (!(f1.is_open() && f2.is_open())) {
         return 1;
     }
+
     while (f1 >> number) {
-        baits[number / 64] = baits[number / 64] | (0b1000000000000000000000000000000000000000000000000000000000000000 >> (number % 64));
+        baits[number / 8] |= (0b10000000 >> (number % 8));
     }
-    for (int i = 0; i < (10000000 / 64); i++) {
-        for (int j = 0; j < 64; j++) {
-            if (baits[i] & (0b1000000000000000000000000000000000000000000000000000000000000000 >> j))
-                f2 << i * 64 + j << endl;
+
+    for (int i = 0; i < (MAX_NUM / 8); i++) {
+        for (int j = 0; j < 8; j++) {
+            if (baits[i] & (0b10000000 >> j))
+                f2 << i * 8 + j << endl;
         }
     }
+
     f1.close();
     f2.close();
+
+    unsigned int end_time = clock();
+    unsigned int search_time = end_time - start_time;
+    cout << "Time programm requaired " << search_time/1000 << " seconds" << endl;
     
-    
-    /*
-    ofstream f1;
-    f1.open("Fuf.txt");
-    vector<int> st;
-    int n = 0;
-    for (int i = 0; i < 10000000; i++)
-        f1 << i << endl;
-  //      st.push_back(i);
-    while (st.size() != 0) {
-        n = abs(rand()) % st.size();
-        f1 << st[n] << endl;
-        st.erase(st.begin() + n);
-    }
-    
-    f1.close();
-    */
+
 
     return 0;
 }
