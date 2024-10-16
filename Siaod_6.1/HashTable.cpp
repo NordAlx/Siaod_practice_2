@@ -30,7 +30,6 @@ void HashTable::insertData(string disciplineCode, string directionCode, string d
         this->elements[index].n = n;
     }
     numberOfElements++;
-    cout << "Element was added" << endl;
 }
 
 void HashTable::realloc() {
@@ -70,7 +69,7 @@ int HashTable::get(string key) {
         }
         else if (this->elements[temp].disciplineCode == key && this->elements[temp].deleted)
             break;
-        temp = (temp + move * count) % this->capacity;
+        temp = (index + move * count) % this->capacity;
         count++;
     }
     cout << "Not found" << endl;
@@ -83,8 +82,7 @@ void HashTable::print(string key) {
         cout << this->elements[key1].disciplineCode << " ";
         cout << this->elements[key1].directionCode << " ";
         cout << this->elements[key1].disciplineName << " ";
-        cout << this->elements[key1].semesterNumber;
-        cout << endl;
+        cout << this->elements[key1].semesterNumber << endl;
     }
 }
 

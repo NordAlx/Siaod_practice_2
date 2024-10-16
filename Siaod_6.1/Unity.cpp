@@ -3,17 +3,20 @@ using namespace Unity;
 
 void Unity::startWork() {
     HashTable table;
-    string name, line = "", ln, disciplineCode, directionCode, disciplineName, semesterNumber;
-    int n = 1, count = 1;
+    Elements fileElements;
+    string name, line = "", ln = "", disciplineCode, directionCode, disciplineName, semesterNumber;
+    int n = 0, count = 1;
     char x;
     cout << "Input the file name: ";
     cin >> name;
     ifstream file(name, ios_base::binary);
+    file.seekg(0, ios_base::beg);
     if (file.is_open()) {
         while (file.read(&x, sizeof(char))) {
+            cout << x;
             if (x == ' ' || x == '\n') {
                 if (x != '\n') {
-                    cout << line << endl;
+                    ln += x;
                     switch (count) {
                     case 1:
                         disciplineCode = line;
@@ -31,22 +34,23 @@ void Unity::startWork() {
                     count++;
                 }
                 else {
-                    cout << line << endl;
                     semesterNumber = line;
                     line = "";
-                    count++;
                     count = 1;
                     table.insertData(disciplineCode, directionCode, disciplineName, semesterNumber, n);
+                    fileElements.add(ln);
+                    ln = "";
                     n++;
                 }
             }
             else {
                 line += x;
+                ln += x;
             }
         }
-        cout << line << endl;
         semesterNumber = line;
         table.insertData(disciplineCode, directionCode, disciplineName, semesterNumber, n);
+        fileElements.add(ln);
     }
     file.close();
 
@@ -64,12 +68,12 @@ void Unity::startWork() {
         if (command == "1") {
             cout << "Input the key: ";
             cin >> key;
-            Unity::dlt(key, table, name);
+            Unity::dlt(key, table, fileElements, name);
         }
         else if (command == "2") {
             cout << "Input the key: ";
             cin >> key;
-            Unity::findInFile(key, table, name);
+            Unity::findInFile(key, table, fileElements, name);
         }
         else
             cout << "Unknown command" << endl;
@@ -80,18 +84,19 @@ void Unity::startWork() {
 }
 
 
-void Unity::dlt(string key, HashTable& table, string name) {
+void Unity::dlt(string key, HashTable& table, Elements& fileElements, string name) {
     int k = table.get(key);
     if (k != -1) {
-        deletePart(name, table.elements[k].n);
+        fileElements.deleteNode(name, table.elements[k].n);
         table.dlt(key);
     }
 }
 
 
-void Unity::findInFile(string key, HashTable& table, string name) {
+void Unity::findInFile(string key, HashTable& table, Elements& fileElements, string name) {
     int k = table.get(key);
+    cout << k;
     if (k != -1) {
-        cout << BinaryFuncs::findInFile(name, table.elements[k].n);
+        cout << fileElements.findInFile(name, table.elements[k].n);
     }
 }
