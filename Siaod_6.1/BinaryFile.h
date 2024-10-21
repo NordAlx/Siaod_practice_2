@@ -9,14 +9,14 @@
 using namespace std;
 
 struct Node {
-	string line;
-	double offset = 0;
+	char* line;
+	int offset = 0, size = 0;
 };
 
 struct Elements {
 	vector <Node*> elements;
 
-	void add(string line);
+	void add(char* line, int offset, int size);
 	void deleteNode(string name, int n);
 	string findInFile(string name, int n);
 };

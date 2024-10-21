@@ -2,58 +2,59 @@
 using namespace Unity;
 
 void Unity::startWork() {
-    HashTable table;
-    Elements fileElements;
-    string name, line = "", ln = "", disciplineCode, directionCode, disciplineName, semesterNumber;
-    int n = 0, count = 1;
-    char x;
+    HashTable *table = new HashTable;
+    Elements *fileElements = new Elements;
+    string name, disciplineCode, directionCode, disciplineName, semesterNumber, line = "";
+    char x, *ln;
+    int count = 1, n = 0, point = 0, offset = 0;
     cout << "Input the file name: ";
     cin >> name;
     ifstream file(name, ios_base::binary);
-    file.seekg(0, ios_base::beg);
-    if (file.is_open()) {
-        while (file.read(&x, sizeof(char))) {
-            cout << x;
-            if (x == ' ' || x == '\n') {
-                if (x != '\n') {
-                    ln += x;
-                    switch (count) {
-                    case 1:
-                        disciplineCode = line;
-                        line = "";
-                        break;
-                    case 2:
-                        directionCode = line;
-                        line = "";
-                        break;
-                    case 3:
-                        disciplineName = line;
-                        line = "";
-                        break;
-                    }
-                    count++;
-                }
-                else {
-                    semesterNumber = line;
-                    line = "";
-                    count = 1;
-                    table.insertData(disciplineCode, directionCode, disciplineName, semesterNumber, n);
-                    fileElements.add(ln);
-                    ln = "";
-                    n++;
-                }
-            }
-            else {
-                line += x;
-                ln += x;
-            }
-        }
-        semesterNumber = line;
-        table.insertData(disciplineCode, directionCode, disciplineName, semesterNumber, n);
-        fileElements.add(ln);
+    if (!file.is_open()) {
+        cout << "Couldn't open the file" << endl;
+        return;
     }
-    file.close();
+    
+    while (file.read((char*)&x, sizeof(char))) {
+        if (x == '\n') {
+            semesterNumber = line;
+            table->insertData(disciplineCode, directionCode, disciplineName, semesterNumber, n);
+            n++;
+            line = "";
+            count = 1;
+        }
+        else if (x == ' ') {
+            switch (count) {
+            case 1:
+                disciplineCode = line;
+                break;
+            case 2:
+                directionCode = line;
+                break;
+            case 3:
+                disciplineName = line;
+                break;
+            }
+            count++;
+            line = "";
+        }
+        else {
+            line += x;
+        }
 
+        cout << x;
+        if (x == '\n') {
+            point = file.tellg();
+            file.seekg(offset);
+            ln = new char[point - offset];
+            file.read(ln, point - offset);
+            fileElements->add(ln, offset, point - offset);
+            offset = point;
+        }
+    }
+
+    file.close();
+    
     string command;
     string key;
 
@@ -81,22 +82,22 @@ void Unity::startWork() {
         cout << "Input the command: ";
         cin >> command;
     }
+    
 }
 
 
-void Unity::dlt(string key, HashTable& table, Elements& fileElements, string name) {
-    int k = table.get(key);
+void Unity::dlt(string key, HashTable* table, Elements* fileElements, string name) {
+    int k = table->get(key);
     if (k != -1) {
-        fileElements.deleteNode(name, table.elements[k].n);
-        table.dlt(key);
+        fileElements->deleteNode(name, table->elements[k].n);
+        table->dlt(key);
     }
 }
 
 
-void Unity::findInFile(string key, HashTable& table, Elements& fileElements, string name) {
-    int k = table.get(key);
-    cout << k;
+void Unity::findInFile(string key, HashTable* table, Elements* fileElements, string name) {
+    int k = table->get(key);
     if (k != -1) {
-        cout << fileElements.findInFile(name, table.elements[k].n);
+        cout << fileElements->findInFile(name, table->elements[k].n);
     }
 }
