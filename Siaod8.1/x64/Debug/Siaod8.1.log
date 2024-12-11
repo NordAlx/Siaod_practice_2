@@ -1,0 +1,4 @@
+﻿  Siaod8.1.cpp
+C:\Users\Polie\source\project\Siaod_practice_2\Siaod8.1\Siaod8.1.cpp(91,16): warning C4244: инициализация: преобразование "unsigned __int64" в "double", возможна потеря данных
+C:\Users\Polie\source\project\Siaod_practice_2\Siaod8.1\Siaod8.1.cpp(137,32): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  Siaod8.1.vcxproj -> C:\Users\Polie\source\project\Siaod_practice_2\Siaod8.1\x64\Debug\Siaod8.1.exe
