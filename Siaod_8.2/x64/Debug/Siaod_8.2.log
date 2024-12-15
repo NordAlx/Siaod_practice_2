@@ -1,0 +1,4 @@
+﻿  Siaod_8.2.cpp
+C:\Users\Polie\source\project\Yandex\Siaod_8.2\Siaod_8.2.cpp(19,26): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Polie\source\project\Yandex\Siaod_8.2\Siaod_8.2.cpp(30,26): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Siaod_8.2.vcxproj -> C:\Users\Polie\source\project\Yandex\Siaod_8.2\x64\Debug\Siaod_8.2.exe
