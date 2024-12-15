@@ -561,6 +561,28 @@ public:
 };
 
 int main() {
+
+    //BinaryTree *tree = new BinaryTree;
+    //tree->addNode(50, tree->root);
+    //tree->addNode(70, tree->root);
+    //tree->addNode(80, tree->root);
+    //tree->addNode(40, tree->root);
+    //tree->addNode(45, tree->root);
+    //tree->addNode(51, tree->root);
+    //tree->addNode(20, tree->root);
+    //tree->addNode(72, tree->root);
+    //tree->addNode(25, tree->root);
+    //tree->addNode(23, tree->root);
+    //tree->addNode(4, tree->root);
+    //tree->showTree(tree->root);
+    //cout << endl;
+    //cout << tree->find(25, tree->root);
+    //tree->deleteNode(50, tree->root);
+    //tree->deleteMax();
+    //tree->showTree(tree->root);
+    //cout << tree->mid() << endl;
+
+
     BTree t(2);
     t.insert(4);
     t.insert(9);
@@ -594,6 +616,12 @@ int main() {
 
 
     cout << endl << endl << endl << endl;
+    //t.deleteKey(18);
+    //t.deleteKey(37);
+    //t.print();
+    //cout << t.search(18);
+    //t.getMax()->print(0);
+    //t.getMin()->print(0);
     cout << t.getDif();
 
 }

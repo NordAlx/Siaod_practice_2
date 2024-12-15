@@ -1,2 +1,7 @@
-﻿  Siaod_6.1.cpp
-  Siaod_6.1.vcxproj -> C:\Users\Polie\source\project\Siaod_practice_2\Siaod_6.1\x64\Debug\Siaod_6.1.exe
+﻿  BinaryFile.cpp
+  HashTable.cpp
+  Siaod_6.1.cpp
+  Unity.cpp
+C:\Users\Polie\source\repos\Siaod_practice_2\Siaod_6.1\Unity.cpp(47,31): warning C4244: '=': conversion from 'std::streamoff' to 'int', possible loss of data
+  Generating Code...
+  Siaod_6.1.vcxproj -> C:\Users\Polie\source\repos\Siaod_practice_2\Siaod_6.1\x64\Debug\Siaod_6.1.exe
